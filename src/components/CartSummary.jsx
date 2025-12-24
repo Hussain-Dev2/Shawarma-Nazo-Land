@@ -34,9 +34,11 @@ export default function CartSummary({ cartItems }) {
     const encodedMessage = encodeURIComponent(message);
 
     // 6. فتح رابط واتساب
+    // ملاحظة: الرابط wa.me يعمل تلقائياً مع "واتساب العادي" و "واتساب للأعمال".
+    // نستخدم window.location.href لتجربة أفضل على الموبايل (بدون فتح تبويب جديد فارغ).
     const url = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
     
-    window.open(url, '_blank');
+    window.location.href = url;
   };
 
   return (
