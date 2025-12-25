@@ -17,7 +17,7 @@ export default function CategoryTabs({ selectedCategory, onSelectCategory }) {
             px-5 py-2 rounded-full whitespace-nowrap text-sm font-bold transition-all transform active:scale-95
             ${
               selectedCategory === cat.id
-                ? 'bg-banana-black text-banana-yellow shadow-lg scale-105'
+                ? 'bg-brand-purple text-white shadow-lg scale-105'
                 : 'bg-white text-gray-500 hover:bg-gray-50 border border-gray-100'
             }
           `}

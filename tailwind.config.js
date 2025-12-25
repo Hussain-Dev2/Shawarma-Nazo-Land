@@ -6,11 +6,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        'banana-yellow': '#FFD700', // Gold/Yellow
-        'banana-black': '#111111',  // Deep Black
+        'brand-lavender': '#E6E6FA', // Light Lavender
+        'brand-purple': '#9370DB',   // Medium Purple for accents
+        'brand-dark': '#4B0082',     // Indigo/Dark Purple for text
       },
       fontFamily: {
-        'sans': ['Inter', 'sans-serif'], // Or any other nice font
+        'sans': ['Cairo', 'Inter', 'sans-serif'], // Added Cairo for Arabic support
       }
     },
   },

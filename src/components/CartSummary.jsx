@@ -12,7 +12,7 @@ export default function CartSummary({ cartItems }) {
     const { phoneNumber } = storeConfig;
 
     // 2. تجهيز نص الرسالة
-    let message = `*طلب جديد من متجر كرزات بنانا 🍌*\n`;
+    let message = `*طلب جديد من ${storeConfig.storeName} 🌸*\n`;
     message += `----------------------------\n`;
 
     // 3. إضافة المنتجات
@@ -27,15 +27,12 @@ export default function CartSummary({ cartItems }) {
     message += `----------------------------\n`;
     message += `*المجموع الكلي: ${formattedGrandTotal} ${storeConfig.currencySymbol}*\n`;
     message += `----------------------------\n`;
-    message += `طرق الدفع المتاحة:\n- زين كاش\n- آسيا حوالة\n`;
-    message += `\n📍 يرجى تزويدنا بالعنوان الكامل لإتمام الطلب:`;
+    message += `\n📍 *يرجى كتابة العنوان الكامل (المدينة، المنطقة، أقرب نقطة دالة) هنا لإتمام الطلب:* \n\n`;
 
     // 5. تشفير الرسالة
     const encodedMessage = encodeURIComponent(message);
 
     // 6. فتح رابط واتساب
-    // ملاحظة: الرابط wa.me يعمل تلقائياً مع "واتساب العادي  " و "واتساب للأعمال".
-    // نستخدم window.location.href لتجربة أفضل على الموبايل (بدون فتح تبويب جديد فارغ).
     const url = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
     
     window.location.href = url;
@@ -46,12 +43,12 @@ export default function CartSummary({ cartItems }) {
       <div className="max-w-md mx-auto flex items-center justify-between gap-4">
         <div className="flex flex-col">
           <span className="text-gray-500 text-xs font-medium">المجموع الكلي</span>
-          <span className="text-xl font-black text-banana-black">{totalPrice.toLocaleString()} {storeConfig.currencySymbol}</span>
+          <span className="text-xl font-black text-brand-dark">{totalPrice.toLocaleString()} {storeConfig.currencySymbol}</span>
         </div>
         
         <button
           onClick={handleCheckout}
-          className="flex-1 bg-banana-yellow hover:bg-yellow-400 text-banana-black py-3.5 px-6 rounded-2xl font-bold shadow-lg shadow-yellow-200/50 active:scale-95 transition-all flex items-center justify-center gap-2"
+          className="flex-1 bg-brand-purple hover:bg-brand-dark text-white py-3.5 px-6 rounded-2xl font-bold shadow-lg shadow-purple-200/50 active:scale-95 transition-all flex items-center justify-center gap-2"
         >
           <span>إتمام الطلب عبر واتساب</span>
           <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
