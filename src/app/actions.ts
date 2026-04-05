@@ -2,27 +2,6 @@
 
 import prisma from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
-import { writeFile } from "fs/promises";
-import path from "path";
-
-export async function uploadFile(formData: FormData) {
-  try {
-    const file = formData.get("file") as File;
-    if (!file) return { success: false, message: "لم يتم اختيار ملف" };
-    
-    const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
-    
-    const filename = `${Date.now()}-${file.name.replace(/\s+/g, "-")}`;
-    const publicPath = path.join(process.cwd(), "public", "uploads", filename);
-    
-    await writeFile(publicPath, buffer);
-    return { success: true, url: `/uploads/${filename}` };
-  } catch (error: any) {
-    console.error("Upload error:", error);
-    return { success: false, message: "فشل رفع الصورة: " + error.message };
-  }
-}
 
 export async function submitOrder(data: { phone: string; location: string; items: any[]; total: number }) {
   try {

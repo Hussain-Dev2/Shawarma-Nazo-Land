@@ -5,8 +5,9 @@ import { useRouter } from "next/navigation";
 import { 
   createCategory, deleteCategory, updateCategory,
   createProduct, deleteProduct, updateProduct,
-  updateOrderStatus, updateStoreStatus, uploadFile, updateStoreSettings
+  updateOrderStatus, updateStoreStatus, updateStoreSettings
 } from "@/app/actions";
+import { supabase } from "@/lib/supabase";
 
 // Professional SVG Icons
 const Icons = {
@@ -111,20 +112,35 @@ export default function AdminDashboard({ initialCategories, initialOrders, isOpe
     if (!file) return;
 
     setIsUploading(true);
-    const formData = new FormData();
-    formData.append("file", file);
+    
+    try {
+      // 1. Create a unique filename
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${Math.random().toString(36).substring(2)}-${Date.now()}.${fileExt}`;
+      const filePath = `product-images/${fileName}`;
 
-    const res = await uploadFile(formData);
-    setIsUploading(false);
+      // 2. Upload to Supabase 'products' bucket
+      const { data, error } = await supabase.storage
+        .from('products')
+        .upload(filePath, file);
 
-    if (res.success && res.url) {
+      if (error) throw error;
+
+      // 3. Get the public URL
+      const { data: { publicUrl } } = supabase.storage
+        .from('products')
+        .getPublicUrl(filePath);
+
       if (editingProdId) {
-        setEditProdData((prev: any) => ({ ...prev, imageUrl: res.url }));
+        setEditProdData((prev: any) => ({ ...prev, imageUrl: publicUrl }));
       } else {
-        setNewProdImage(res.url);
+        setNewProdImage(publicUrl);
       }
-    } else {
-      alert(res.message || "حدث خطأ أثناء رفع الصورة");
+    } catch (error: any) {
+      console.error("Upload Error:", error);
+      alert("فشل رفع الصورة: " + (error.message || "تأكد من إعدادات Supabase Storage"));
+    } finally {
+      setIsUploading(false);
     }
   }, [editingProdId]);
 
