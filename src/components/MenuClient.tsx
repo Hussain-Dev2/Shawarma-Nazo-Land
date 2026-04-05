@@ -37,6 +37,7 @@ export default function MenuClient({ categories, isOpen }: { categories: Categor
   const [activeCategoryId, setActiveCategoryId] = useState("all");
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [localIsOpen, setLocalIsOpen] = useState(isOpen);
   const [selectedSizes, setSelectedSizes] = useState<Record<string, { name: string; price: number }>>({});
@@ -291,19 +292,40 @@ export default function MenuClient({ categories, isOpen }: { categories: Categor
       </footer>
 
       {totalItems > 0 && localIsOpen && (
-         <div className="fixed bottom-6 left-0 w-full z-[100] px-4 pointer-events-none animate-slide-up">
-            <div className="max-w-lg mx-auto pointer-events-auto">
-               <button onClick={() => setIsCheckoutOpen(true)} className="relative w-full group">
-                  <div className="relative glass bg-brand-red text-white rounded-[2rem] py-6 px-8 flex items-center justify-between shadow-3xl active:scale-95 border border-white/20">
-                     <span className="text-xl font-black">{totalPrice.toLocaleString("ar-IQ")} د.ع</span>
-                     <div className="flex items-center gap-4 flex-row-reverse">
-                        <div className="bg-black/20 w-12 h-12 rounded-xl flex items-center justify-center font-black text-xl">{totalItems}</div>
-                        <span className="font-black text-lg italic uppercase">إتمام الطلب</span>
-                     </div>
+         <div className="fixed bottom-4 left-0 w-full z-[100] px-3 pointer-events-none animate-slide-up">
+            <div className="max-w-lg mx-auto pointer-events-auto flex gap-2">
+               {/* Edit cart button */}
+               <button
+                 onClick={() => setIsCartOpen(true)}
+                 className="flex-shrink-0 glass bg-white/10 border border-white/20 rounded-2xl px-4 flex items-center justify-center gap-2 active:scale-90 transition-all"
+               >
+                 <div className="bg-brand-orange/90 w-6 h-6 rounded-lg flex items-center justify-center font-black text-xs text-white">{totalItems}</div>
+                 <svg className="w-5 h-5 text-white/80" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                 </svg>
+               </button>
+               {/* Checkout button */}
+               <button onClick={() => setIsCheckoutOpen(true)} className="relative flex-1 group">
+                  <div className="relative glass bg-brand-red text-white rounded-2xl py-3.5 px-5 flex items-center justify-between shadow-3xl active:scale-95 border border-white/20">
+                     <span className="text-base font-black">{totalPrice.toLocaleString("ar-IQ")} د.ع</span>
+                     <span className="font-black text-sm italic uppercase">إتمام الطلب</span>
                   </div>
                </button>
             </div>
          </div>
+      )}
+
+      {/* Cart Drawer */}
+      {isCartOpen && (
+        <CartDrawer
+          cart={cart}
+          totalPrice={totalPrice}
+          totalItems={totalItems}
+          onClose={() => setIsCartOpen(false)}
+          onCheckout={() => { setIsCartOpen(false); setIsCheckoutOpen(true); }}
+          onAdd={(product: Product, size?: string, price?: number) => addToCart(product, size ? { name: size, price: price! } : undefined)}
+          onRemove={(productId: string, sizeName?: string) => removeFromCart(productId, sizeName)}
+        />
       )}
 
       {isCheckoutOpen && (
@@ -461,3 +483,125 @@ const ProductCard = React.memo(({
 });
 
 ProductCard.displayName = "ProductCard";
+
+// ─── Cart Drawer ────────────────────────────────────────────────────────────
+function CartDrawer({
+  cart,
+  totalPrice,
+  totalItems,
+  onClose,
+  onCheckout,
+  onAdd,
+  onRemove,
+}: {
+  cart: CartItem[];
+  totalPrice: number;
+  totalItems: number;
+  onClose: () => void;
+  onCheckout: () => void;
+  onAdd: (product: Product, size?: string, price?: number) => void;
+  onRemove: (productId: string, sizeName?: string) => void;
+}) {
+  return (
+    <div className="fixed inset-0 z-[200] flex items-end justify-center" dir="rtl">
+      {/* Backdrop */}
+      <div
+        className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+        onClick={onClose}
+      />
+
+      {/* Drawer */}
+      <div className="relative w-full max-w-lg bg-[#0f0f10] border-t border-white/10 rounded-t-[2.5rem] shadow-2xl animate-slide-up flex flex-col max-h-[80vh]">
+        {/* Handle bar */}
+        <div className="flex justify-center pt-4 pb-2">
+          <div className="w-12 h-1 rounded-full bg-white/20" />
+        </div>
+
+        {/* Header */}
+        <div className="flex items-center justify-between px-6 py-3 border-b border-white/5">
+          <div className="flex items-center gap-3">
+            <div className="bg-brand-red/20 border border-brand-red/30 rounded-xl px-3 py-1 text-xs font-black text-brand-red">
+              {totalItems} وجبة
+            </div>
+            <h3 className="text-base font-black text-white">طلبك</h3>
+          </div>
+          <button
+            onClick={onClose}
+            className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white active:scale-90 transition-all"
+          >
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        {/* Items list */}
+        <div className="overflow-y-auto flex-1 px-4 py-3 space-y-3">
+          {cart.map((item, i) => {
+            const price = item.selectedPrice ?? item.product.price;
+            const lineTotal = price * item.quantity;
+            return (
+              <div
+                key={`${item.product.id}-${item.selectedSize ?? "nosize"}-${i}`}
+                className="flex items-center gap-3 bg-white/[0.03] border border-white/5 rounded-2xl p-3"
+              >
+                {/* Product name & size */}
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-black text-white truncate">{item.product.name}</p>
+                  {item.selectedSize && (
+                    <span className="text-[10px] font-bold text-brand-orange/80">
+                      {item.selectedSize}
+                    </span>
+                  )}
+                  <p className="text-xs font-bold text-gray-500 mt-0.5">
+                    {lineTotal.toLocaleString("ar-IQ")} د.ع
+                  </p>
+                </div>
+
+                {/* Quantity controls */}
+                <div className="flex items-center gap-1 bg-white/5 rounded-xl p-1 border border-white/10">
+                  <button
+                    onClick={() => onRemove(item.product.id, item.selectedSize)}
+                    className="w-8 h-8 flex items-center justify-center text-white font-bold rounded-lg active:bg-white/10 transition-all text-lg"
+                  >
+                    {item.quantity === 1 ? (
+                      <svg className="w-4 h-4 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                      </svg>
+                    ) : "−"}
+                  </button>
+                  <span className="w-6 text-center text-sm font-black text-white">{item.quantity}</span>
+                  <button
+                    onClick={() => onAdd(item.product, item.selectedSize, item.selectedPrice)}
+                    className="w-8 h-8 bg-brand-red flex items-center justify-center text-white font-bold rounded-lg active:scale-90 transition-all text-lg shadow-lg shadow-brand-red/30"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Footer */}
+        <div className="px-4 py-4 border-t border-white/5 space-y-3">
+          <div className="flex items-center justify-between px-1">
+            <span className="text-sm font-black text-white">المجموع</span>
+            <span className="text-lg font-black text-brand-orange">
+              {totalPrice.toLocaleString("ar-IQ")} <small className="text-xs opacity-60">د.ع</small>
+            </span>
+          </div>
+          <button
+            onClick={onCheckout}
+            className="w-full bg-brand-red text-white py-4 rounded-2xl font-black text-sm tracking-wide active:scale-95 transition-all shadow-lg shadow-brand-red/30 flex items-center justify-center gap-2"
+          >
+            <span>إتمام الطلب</span>
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}

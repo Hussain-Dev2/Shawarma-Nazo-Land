@@ -207,122 +207,117 @@ export default function AdminDashboard({ initialCategories, initialOrders, isOpe
       )}
 
       {/* Top Navbar */}
-      <div className="glass bg-black/60 border-b border-white/5 sticky top-0 z-[100] px-8 py-5">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-             {/* Luxury Store Toggle - Corrected Standard Direction */}
-             <div 
-               className="flex items-center gap-4 bg-white/5 px-6 py-4 rounded-2xl border border-white/5 group hover:bg-white/10 transition-all cursor-pointer select-none active:scale-95 flex-row-reverse" 
-               onClick={handleToggleStore}
-             >
-                <span className={`text-[11px] font-black uppercase tracking-widest ${isOpen ? 'text-green-500' : 'text-red-500'}`}>
-                   {isOpen ? 'مفتوح' : 'مغلق'}
-                </span>
-                <div className={`w-12 h-6 rounded-full relative transition-all duration-500 ${isOpen ? 'bg-green-500/20' : 'bg-red-500/20'}`}>
-                   <div className={`absolute top-1 w-4 h-4 rounded-full transition-all duration-500 shadow-lg ${isOpen ? 'right-7 bg-green-500' : 'right-1 bg-red-500'}`}></div>
-                </div>
-                <span className="text-[10px] font-black uppercase text-gray-500 hidden sm:block">المطعم:</span>
-             </div>
+      <div className="glass bg-black/60 border-b border-white/5 sticky top-0 z-[100] px-4 md:px-8 py-3 md:py-5">
+        <div className="max-w-7xl mx-auto flex justify-between items-center gap-3">
+          {/* Store Toggle */}
+          <div
+            className="flex items-center gap-2 md:gap-4 bg-white/5 px-3 md:px-6 py-2.5 md:py-4 rounded-xl md:rounded-2xl border border-white/5 cursor-pointer select-none active:scale-95 flex-row-reverse transition-all"
+            onClick={handleToggleStore}
+          >
+            <span className={`text-[10px] md:text-[11px] font-black uppercase tracking-widest ${isOpen ? 'text-green-500' : 'text-red-500'}`}>
+              {isOpen ? 'مفتوح' : 'مغلق'}
+            </span>
+            <div className={`w-10 h-5 md:w-12 md:h-6 rounded-full relative transition-all duration-500 ${isOpen ? 'bg-green-500/20' : 'bg-red-500/20'}`}>
+              <div className={`absolute top-0.5 md:top-1 w-4 h-4 rounded-full transition-all duration-500 shadow-lg ${isOpen ? 'right-5 md:right-7 bg-green-500' : 'right-0.5 md:right-1 bg-red-500'}`}></div>
+            </div>
+            <span className="text-[9px] font-black uppercase text-gray-500 hidden sm:block">المطعم:</span>
+          </div>
 
-          <button onClick={() => setIsAuthenticated(false)} className="flex items-center gap-2 bg-white/5 hover:bg-red-500/10 hover:text-red-500 px-6 py-3 rounded-2xl text-[11px] font-black border border-white/5 transition-all text-gray-500">
+          <button
+            onClick={() => setIsAuthenticated(false)}
+            className="flex items-center gap-2 bg-white/5 hover:bg-red-500/10 hover:text-red-500 px-3 md:px-6 py-2.5 md:py-3 rounded-xl md:rounded-2xl text-[10px] md:text-[11px] font-black border border-white/5 transition-all text-gray-500"
+          >
             <Icons.Logout />
             <span className="hidden sm:inline">تسجيل الخروج</span>
           </button>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto p-8 mt-12">
+      <div className="max-w-7xl mx-auto px-3 md:p-8 pt-6 md:mt-12">
         
-        {/* ADVANCED ANALYTICS OVERVIEW */}
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 mb-16">
-           {/* Today / Current Shift */}
-           <div className="glass bg-brand-red/5 p-8 rounded-[3rem] border border-brand-red/10 relative overflow-hidden transition-all hover:bg-brand-red/10 group">
-              <span className="text-[10px] font-black text-brand-red uppercase tracking-widest block mb-1">طلبات اليوم</span>
-              <div className="text-3xl font-black italic">{todayOrdersCount}</div>
-              <div className="absolute top-[-20px] right-[-20px] w-20 h-20 bg-brand-red/10 rounded-full blur-2xl group-hover:scale-150 transition-transform"></div>
-           </div>
-           
-           <div className="glass bg-white/[0.02] p-8 rounded-[3rem] border border-white/5 relative overflow-hidden transition-all hover:bg-white/[0.05]">
-              <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest block mb-1">نشط حالياً</span>
-              <div className="text-3xl font-black italic text-brand-orange">{activeOrdersCount}</div>
-           </div>
+        {/* ANALYTICS OVERVIEW */}
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3 md:gap-4 mb-8 md:mb-16">
+          <div className="glass bg-brand-red/5 p-4 md:p-8 rounded-2xl md:rounded-[3rem] border border-brand-red/10 relative overflow-hidden transition-all hover:bg-brand-red/10 group">
+            <span className="text-[9px] md:text-[10px] font-black text-brand-red uppercase tracking-widest block mb-1">طلبات اليوم</span>
+            <div className="text-2xl md:text-3xl font-black italic">{todayOrdersCount}</div>
+            <div className="absolute top-[-20px] right-[-20px] w-20 h-20 bg-brand-red/10 rounded-full blur-2xl group-hover:scale-150 transition-transform"></div>
+          </div>
+          
+          <div className="glass bg-white/[0.02] p-4 md:p-8 rounded-2xl md:rounded-[3rem] border border-white/5 relative overflow-hidden transition-all hover:bg-white/[0.05]">
+            <span className="text-[9px] md:text-[10px] font-black text-gray-500 uppercase tracking-widest block mb-1">نشط حالياً</span>
+            <div className="text-2xl md:text-3xl font-black italic text-brand-orange">{activeOrdersCount}</div>
+          </div>
 
-           <div className="lg:col-span-1 xl:col-span-3 glass bg-white/[0.01] p-8 rounded-[3rem] border border-white/5 flex items-center justify-between flex-row-reverse border-dashed">
-              <div className="text-right">
-                 <span className="text-[10px] font-black text-gray-600 uppercase tracking-widest block mb-1">آخر تحديث</span>
-                 <p className="text-xs font-bold text-gray-400">تتم المزامنة تلقائياً كل ٣٠ ثانية</p>
-              </div>
-              <div className="flex items-center gap-4 flex-row-reverse">
-                 <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/5 flex items-center justify-center animate-spin duration-[3000ms]">
-                    <Icons.Check />
-                 </div>
-              </div>
-           </div>
+          <div className="col-span-2 lg:col-span-1 xl:col-span-3 glass bg-white/[0.01] p-4 md:p-8 rounded-2xl md:rounded-[3rem] border border-white/5 flex items-center justify-between flex-row-reverse border-dashed">
+            <div className="text-right">
+              <span className="text-[9px] md:text-[10px] font-black text-gray-600 uppercase tracking-widest block mb-1">آخر تحديث</span>
+              <p className="text-[10px] md:text-xs font-bold text-gray-400">تتم المزامنة تلقائياً كل ٣٠ ثانية</p>
+            </div>
+            <div className="w-10 h-10 md:w-12 md:h-12 rounded-2xl bg-white/5 border border-white/5 flex items-center justify-center animate-spin duration-[3000ms]">
+              <Icons.Check />
+            </div>
+          </div>
         </div>
 
         {/* Tab Selection */}
-        <div className="flex gap-4 mb-12 flex-row-reverse">
-          <button onClick={() => setActiveTab("orders")} className={`flex-1 py-6 rounded-[2.5rem] text-[11px] font-black tracking-[0.3em] uppercase transition-all duration-500 ${activeTab === "orders" ? 'bg-brand-red text-white shadow-3xl shadow-brand-red/20' : 'bg-white/5 text-gray-500 border border-white/5'}`}>إدارة الطلبات</button>
-          <button onClick={() => setActiveTab("menu")} className={`flex-1 py-6 rounded-[2.5rem] text-[11px] font-black tracking-[0.3em] uppercase transition-all duration-500 ${activeTab === "menu" ? 'bg-brand-red text-white shadow-3xl shadow-brand-red/20' : 'bg-white/5 text-gray-500 border border-white/5'}`}>إدارة المنيو</button>
+        <div className="flex gap-2 md:gap-4 mb-6 md:mb-12 flex-row-reverse">
+          <button onClick={() => setActiveTab("orders")} className={`flex-1 py-3.5 md:py-6 rounded-2xl md:rounded-[2.5rem] text-[10px] md:text-[11px] font-black tracking-widest uppercase transition-all duration-500 ${activeTab === "orders" ? 'bg-brand-red text-white shadow-3xl shadow-brand-red/20' : 'bg-white/5 text-gray-500 border border-white/5'}`}>الطلبات</button>
+          <button onClick={() => setActiveTab("menu")} className={`flex-1 py-3.5 md:py-6 rounded-2xl md:rounded-[2.5rem] text-[10px] md:text-[11px] font-black tracking-widest uppercase transition-all duration-500 ${activeTab === "menu" ? 'bg-brand-red text-white shadow-3xl shadow-brand-red/20' : 'bg-white/5 text-gray-500 border border-white/5'}`}>المنيو</button>
         </div>
 
         {activeTab === "orders" && (
-          <div className="space-y-6">
-            <div className="flex justify-between items-center mb-10 flex-row-reverse">
-               <h2 className="text-4xl font-black italic tracking-tighter uppercase leading-none">لوحة الطلبات</h2>
-               <div className="h-0.5 flex-1 mx-10 bg-white/[0.03]"></div>
+          <div className="space-y-4 md:space-y-6">
+            <div className="flex justify-between items-center mb-4 md:mb-10 flex-row-reverse">
+              <h2 className="text-2xl md:text-4xl font-black italic tracking-tighter uppercase leading-none">لوحة الطلبات</h2>
+              <div className="h-0.5 flex-1 mx-4 md:mx-10 bg-white/[0.03]"></div>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
               {initialOrders.length === 0 ? (
-                <div className="col-span-full py-32 text-center glass rounded-[4rem] border border-dashed border-white/10 opacity-30">
-                  <p className="text-2xl font-black uppercase tracking-widest italic">لا يوجد طلبات جديدة</p>
+                <div className="col-span-full py-16 md:py-32 text-center glass rounded-3xl md:rounded-[4rem] border border-dashed border-white/10 opacity-30">
+                  <p className="text-lg md:text-2xl font-black uppercase tracking-widest italic">لا يوجد طلبات جديدة</p>
                 </div>
               ) : (
                 initialOrders.map((o: any) => (
-                  <div key={o.id} className={`glass p-10 rounded-[4rem] border transition-all duration-700 relative group overflow-hidden ${o.status === 'DONE' ? 'border-green-500/20 bg-green-500/5 opacity-60 scale-95' : 'border-white/5 bg-white/[0.02] hover:bg-white/[0.05] hover:border-brand-red/20'}`}>
-                    <div className="flex justify-between items-start mb-10 flex-row-reverse">
+                  <div key={o.id} className={`glass p-5 md:p-10 rounded-3xl md:rounded-[4rem] border transition-all duration-700 relative group overflow-hidden ${o.status === 'DONE' ? 'border-green-500/20 bg-green-500/5 opacity-60' : 'border-white/5 bg-white/[0.02] hover:border-brand-red/20'}`}>
+                    <div className="flex justify-between items-start mb-4 md:mb-10 flex-row-reverse">
                       <div className="text-right">
-                        <span className="text-[10px] font-black text-brand-red uppercase tracking-widest block mb-2 font-cairo">رقم الطلب</span>
-                        <h3 className="text-3xl font-black italic tracking-tighter">#{o.id.slice(-4).toUpperCase()}</h3>
+                        <span className="text-[9px] md:text-[10px] font-black text-brand-red uppercase tracking-widest block mb-1">رقم الطلب</span>
+                        <h3 className="text-xl md:text-3xl font-black italic tracking-tighter">#{o.id.slice(-4).toUpperCase()}</h3>
                       </div>
-                      <div className={`px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest border ${o.status === 'DONE' ? 'bg-green-500/10 text-green-500 border-green-500/20' : 'bg-brand-orange/10 text-brand-orange border-brand-orange/20 animate-pulse'}`}>
+                      <div className={`px-3 py-1.5 rounded-xl text-[9px] md:text-[10px] font-black uppercase tracking-widest border ${o.status === 'DONE' ? 'bg-green-500/10 text-green-500 border-green-500/20' : 'bg-brand-orange/10 text-brand-orange border-brand-orange/20 animate-pulse'}`}>
                         {o.status === 'DONE' ? 'مكتمل' : 'قيد التحضير'}
                       </div>
                     </div>
 
-                    <div className="space-y-6 mb-10 border-y border-white/5 py-8">
+                    <div className="space-y-3 md:space-y-6 mb-4 md:mb-10 border-y border-white/5 py-4 md:py-8">
                       {o.items.map((item: any, idx: number) => (
-                        <div key={idx} className="flex justify-between items-center flex-row-reverse group/item">
-                          <span className="text-sm font-black text-white group-hover/item:text-brand-orange transition-colors">{item.name}</span>
-                          <div className="flex items-center gap-3">
-                            <span className="text-[10px] font-black text-gray-600">x</span>
-                            <span className="bg-white/5 px-2.5 py-1 rounded-lg text-xs font-black text-white">{item.quantity}</span>
-                          </div>
+                        <div key={idx} className="flex justify-between items-center flex-row-reverse">
+                          <span className="text-xs md:text-sm font-black text-white">{item.name}</span>
+                          <span className="bg-white/5 px-2 py-1 rounded-lg text-xs font-black text-white">×{item.quantity}</span>
                         </div>
                       ))}
                     </div>
 
-                    <div className="flex justify-between items-center mb-10 flex-row-reverse">
-                       <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest">المجموع الكلي</span>
-                       <span className="text-2xl font-black text-brand-orange italic tracking-tighter">{o.total.toLocaleString()} د.ع</span>
+                    <div className="flex justify-between items-center mb-4 md:mb-10 flex-row-reverse">
+                      <span className="text-[9px] md:text-[10px] font-black text-gray-500 uppercase tracking-widest">المجموع</span>
+                      <span className="text-lg md:text-2xl font-black text-brand-orange italic tracking-tighter">{o.total.toLocaleString()} د.ع</span>
                     </div>
 
-                    <div className="flex gap-4 mt-auto">
+                    <div className="flex gap-3 mt-auto">
                       {o.status !== 'DONE' && (
-                        <button 
+                        <button
                           onClick={() => handleStatusUpdate(o.id, 'DONE')}
-                          className="flex-1 py-5 bg-green-500 text-white rounded-3xl font-black text-xs uppercase tracking-[0.2em] shadow-2xl shadow-green-500/30 active:scale-95 transition-all"
+                          className="flex-1 py-3.5 md:py-5 bg-green-500 text-white rounded-2xl md:rounded-3xl font-black text-xs uppercase tracking-widest shadow-xl shadow-green-500/30 active:scale-95 transition-all"
                         >
                           إنهاء الطلب
                         </button>
                       )}
-                      <a 
+                      <a
                         href={`https://wa.me/${formatTel(o.customerPhone)}?text=${encodeURIComponent(`مرحباً! طلبك رقم #${o.id.slice(-4).toUpperCase()} جاهز الآن من تاباسكو الشام. المجموع: ${o.total.toLocaleString()} د.ع`)}`}
                         target="_blank"
-                        className="w-16 h-16 bg-white/5 rounded-3xl flex items-center justify-center border border-white/5 hover:bg-white/10 transition-all active:scale-95"
-                      >
-                        <span className="text-xl">💬</span>
-                      </a>
+                        className="w-12 h-12 md:w-16 md:h-16 bg-white/5 rounded-2xl md:rounded-3xl flex items-center justify-center border border-white/5 hover:bg-white/10 transition-all active:scale-95 text-xl"
+                      >💬</a>
                     </div>
                   </div>
                 ))
@@ -332,12 +327,12 @@ export default function AdminDashboard({ initialCategories, initialOrders, isOpe
         )}
 
         {activeTab === "menu" && (
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-10 animate-fade-in">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 md:gap-10 animate-fade-in">
             
             {/* Categories Sidebar */}
-            <div className="lg:col-span-1 space-y-8">
-              <div className="glass bg-white/[0.01] p-10 rounded-[3.5rem] border border-white/5">
-                <h2 className="font-black text-lg mb-8 uppercase tracking-widest text-gray-500">الأقسام</h2>
+            <div className="lg:col-span-1 space-y-4 md:space-y-8">
+              <div className="glass bg-white/[0.01] p-4 md:p-10 rounded-2xl md:rounded-[3.5rem] border border-white/5">
+                <h2 className="font-black text-sm md:text-lg mb-4 md:mb-8 uppercase tracking-widest text-gray-500">الأقسام</h2>
                 
                 <form onSubmit={async (e) => { 
                   e.preventDefault(); 
@@ -371,12 +366,12 @@ export default function AdminDashboard({ initialCategories, initialOrders, isOpe
             </div>
 
             {/* Products Main Management */}
-            <div className="lg:col-span-3 space-y-10">
+            <div className="lg:col-span-3 space-y-4 md:space-y-10">
               
               {/* Product Form Panel */}
-              <div className="glass bg-white/[0.01] p-12 rounded-[4rem] border border-white/5">
-                <h2 className="font-black text-2xl mb-10 flex items-center gap-4 flex-row-reverse">
-                  <div className="w-3 h-3 rounded-full bg-brand-red shadow-[0_0_15px_#ff3b3b]"></div>
+              <div className="glass bg-white/[0.01] p-4 md:p-12 rounded-2xl md:rounded-[4rem] border border-white/5">
+                <h2 className="font-black text-lg md:text-2xl mb-5 md:mb-10 flex items-center gap-3 flex-row-reverse">
+                  <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-brand-red shadow-[0_0_15px_#ff3b3b]"></div>
                   {editingProdId ? 'تعديل الصنف' : 'إضافة صنف جديد'}
                 </h2>
                 
@@ -488,50 +483,56 @@ export default function AdminDashboard({ initialCategories, initialOrders, isOpe
               </div>
 
               {/* Products List Panel */}
-              <div className="glass bg-white/[0.01] p-12 rounded-[4.5rem] border border-white/5">
-                 <div className="flex justify-between items-center mb-12 flex-row-reverse">
-                   <h2 className="font-black text-xl uppercase tracking-widest text-gray-500">قائمة الوجبات</h2>
-                   <div className="h-0.5 flex-1 mx-10 bg-white/[0.03]"></div>
-                 </div>
+              <div className="glass bg-white/[0.01] p-4 md:p-12 rounded-2xl md:rounded-[4.5rem] border border-white/5">
+                <div className="flex justify-between items-center mb-5 md:mb-12 flex-row-reverse">
+                  <h2 className="font-black text-sm md:text-xl uppercase tracking-widest text-gray-500">قائمة الوجبات</h2>
+                  <div className="h-0.5 flex-1 mx-4 md:mx-10 bg-white/[0.03]"></div>
+                </div>
 
-                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 max-h-[1000px] overflow-y-auto pr-2 custom-scrollbar">
-                    {initialCategories.map((c: any) => 
-                       c.products.map((p: any) => (
-                         <div 
-                           key={p.id} 
-                           className="flex flex-row-reverse justify-between items-center bg-white/[0.01] p-4 rounded-[2rem] border border-white/[0.03] group hover:border-brand-red/20 hover:bg-white/[0.02] transition-all gap-4"
-                           style={{ contentVisibility: 'auto', containIntrinsicSize: '80px' }}
-                         >
-                            <div className="flex items-center gap-4 flex-row-reverse flex-1 min-w-0">
-                               <div className="w-16 h-16 rounded-2xl overflow-hidden border border-white/10 shrink-0">
-                                  <img src={p.imageUrl || "/burger-placeholder.png"} className="w-full h-full object-cover" />
-                               </div>
-                               <div className="text-right flex-1 min-w-0">
-                                  <h4 className="text-[11px] md:text-sm font-black text-white truncate">{p.name}</h4>
-                                  <div className="flex flex-wrap items-center gap-2 mt-1 flex-row-reverse">
-                                     <span className={`px-2 py-0.5 rounded-full text-[7px] font-black uppercase ${p.isAvailable ? 'bg-green-500/10 text-green-500' : 'bg-red-500/10 text-red-500'}`}>
-                                        {p.isAvailable ? 'متوفر' : 'نفد'}
-                                     </span>
-                                     <span className="text-[8px] font-bold text-brand-orange truncate">{p.price.toLocaleString()} د.ع</span>
-                                  </div>
-                               </div>
+                <div className="space-y-2 md:grid md:grid-cols-2 md:gap-4 md:space-y-0 max-h-[1000px] overflow-y-auto custom-scrollbar">
+                  {initialCategories.map((c: any) =>
+                    c.products.map((p: any) => (
+                      <div
+                        key={p.id}
+                        className="flex flex-row-reverse justify-between items-center bg-white/[0.02] p-3 md:p-4 rounded-xl md:rounded-[2rem] border border-white/5 hover:border-brand-red/20 transition-all gap-3"
+                        style={{ contentVisibility: 'auto', containIntrinsicSize: '72px' }}
+                      >
+                        <div className="flex items-center gap-3 flex-row-reverse flex-1 min-w-0">
+                          <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl overflow-hidden border border-white/10 shrink-0">
+                            <img src={p.imageUrl || "/burger-placeholder.png"} className="w-full h-full object-cover" />
+                          </div>
+                          <div className="text-right flex-1 min-w-0">
+                            <h4 className="text-xs md:text-sm font-black text-white truncate">{p.name}</h4>
+                            <div className="flex items-center gap-1.5 mt-1 flex-row-reverse">
+                              <span className={`px-2 py-0.5 rounded-full text-[8px] font-black ${p.isAvailable ? 'bg-green-500/10 text-green-500' : 'bg-red-500/10 text-red-500'}`}>
+                                {p.isAvailable ? 'متوفر' : 'نفد'}
+                              </span>
+                              <span className="text-[9px] font-bold text-brand-orange">{p.price.toLocaleString()} د.ع</span>
                             </div>
-                            <div className="flex flex-col gap-1.5 shrink-0">
-                               <button onClick={() => { setEditingProdId(p.id); setEditProdData({ ...p, categoryId: c.id }); window.scrollTo({top: 0, behavior: 'smooth'}); }} className="p-3 bg-white/5 text-gray-500 rounded-xl hover:text-white active:scale-90 transition-all border border-white/5">
-                                 <Icons.Edit />
-                               </button>
-                               <button onClick={() => setConfirmModal({show: true, type: 'product', id: p.id})} className="p-3 bg-red-500/10 text-red-500 rounded-xl hover:bg-red-500 hover:text-white active:scale-90 transition-all border border-red-500/20">
-                                 <Icons.Trash />
-                               </button>
-                            </div>
-                         </div>
-                       ))
-                    )}
-                 </div>
+                          </div>
+                        </div>
+                        <div className="flex flex-col gap-1.5 shrink-0">
+                          <button
+                            onClick={() => { setEditingProdId(p.id); setEditProdData({ ...p, categoryId: c.id }); window.scrollTo({top: 0, behavior: 'smooth'}); }}
+                            className="p-2.5 bg-white/5 text-gray-500 rounded-xl hover:text-white active:scale-90 transition-all border border-white/5"
+                          >
+                            <Icons.Edit />
+                          </button>
+                          <button
+                            onClick={() => setConfirmModal({show: true, type: 'product', id: p.id})}
+                            className="p-2.5 bg-red-500/10 text-red-500 rounded-xl hover:bg-red-500 hover:text-white active:scale-90 transition-all border border-red-500/20"
+                          >
+                            <Icons.Trash />
+                          </button>
+                        </div>
+                      </div>
+                    ))
+                  )}
+                </div>
               </div>
             </div>
           </div>
-         )}
+        )}
       </div>
 
       {/* PREMIUM STANDARDIZED FOOTER */}
