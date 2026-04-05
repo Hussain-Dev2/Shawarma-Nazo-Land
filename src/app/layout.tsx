@@ -11,6 +11,11 @@ const cairo = Cairo({
 export const metadata: Metadata = {
   title: "Tabasco Al-Sham | تباسكو الشام",
   description: "أشهى الوجبات السريعة في بغداد - بوب الشام",
+  icons: {
+    icon: "/55555555555_page-0001.jpg",
+    shortcut: "/55555555555_page-0001.jpg",
+    apple: "/55555555555_page-0001.jpg",
+  }
 };
 
 export default function RootLayout({
