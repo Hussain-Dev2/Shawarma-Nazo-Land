@@ -175,9 +175,17 @@ export default function MenuClient({ categories, isOpen }: { categories: Categor
                TABASCO <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-red via-brand-orange to-brand-red animate-gradient-x">AL-SHAM</span>
             </h1>
             
-            <p className="max-w-2xl mx-auto text-gray-500 text-xs md:text-base font-bold leading-relaxed opacity-70 px-4">
+            <p className="max-w-2xl mx-auto text-gray-400 text-xs md:text-base font-bold leading-relaxed opacity-70 px-4 mb-8">
                استمتع بتجربة طعام استثنائية تجمع بين المذاق الشامي الأصيل وأجود المكونات، لتمنحك نكهة أسطورية لا تُنسى في كل لقمة.
             </p>
+
+            <div className="flex flex-col items-center gap-2 md:gap-4 animate-fade-in" style={{ animationDelay: '300ms' }}>
+               <div className="flex items-center gap-4 text-brand-orange scale-90 md:scale-110">
+                  <div className="w-2 h-2 rounded-full bg-brand-orange animate-ping"></div>
+                  <span className="text-[10px] md:text-xs font-black uppercase tracking-[0.4em] opacity-80">بغداد، بوب الشام • فخر النكهة الشامية</span>
+               </div>
+               <span className="text-gray-500 text-[10px] font-bold tracking-[0.2em] uppercase opacity-40">سوق بوب الجديد • ٧ أيام في الأسبوع</span>
+            </div>
          </div>
       </header>
 
@@ -322,16 +330,16 @@ export default function MenuClient({ categories, isOpen }: { categories: Categor
       {/* PREMIUM STANDARDIZED FOOTER */}
       <footer className="relative z-20 mt-40 pb-24 px-8 border-t border-white/5 pt-24 bg-gradient-to-b from-transparent to-black">
          <div className="max-w-7xl mx-auto">
-            <div className="flex flex-col md:flex-row-reverse justify-between items-center md:items-start gap-16 text-right">
+            <div className="flex flex-col items-center gap-16 text-center">
                
                {/* Branding & Socials */}
-               <div className="space-y-10 flex flex-col items-center md:items-end">
-                  <div className="flex flex-col items-center md:items-end gap-4">
+               <div className="space-y-10 flex flex-col items-center w-full">
+                  <div className="flex flex-col items-center gap-4">
                      <div className="w-20 h-20 rounded-3xl overflow-hidden border border-white/10 mb-2 shadow-2xl skew-y-3 relative">
                         <Image src="/55555555555_page-0001.jpg" alt="Logo" fill className="object-cover" />
                      </div>
                      <h3 className="text-4xl font-black text-white italic tracking-tighter leading-none italic animate-gradient-x bg-clip-text text-transparent bg-gradient-to-r from-white via-white/80 to-white">TABASCO AL-SHAM</h3>
-                     <p className="text-[10px] font-bold text-gray-500 uppercase tracking-[0.3em] max-w-xs leading-relaxed text-center md:text-right">نقدم لكم أفخر النكهات الشامية الأصيلة والوصفات الأسطورية منذ {new Date().getFullYear()}</p>
+                     <p className="text-[10px] font-bold text-gray-500 uppercase tracking-[0.3em] max-w-xs leading-relaxed text-center">نقدم لكم أفخر النكهات الشامية الأصيلة والوصفات الأسطورية منذ {new Date().getFullYear()}</p>
                   </div>
                   
                   <div className="flex gap-5">
@@ -341,21 +349,6 @@ export default function MenuClient({ categories, isOpen }: { categories: Categor
                      <a href="https://www.instagram.com/tab_asco1?igsh=ZXprcTdqNms2dWlz" target="_blank" rel="noopener noreferrer" className="w-16 h-16 rounded-[2rem] glass bg-white/5 flex items-center justify-center border border-white/5 hover:border-brand-red/40 hover:bg-brand-red/10 transition-all duration-700 group active:scale-90 shadow-lg">
                         <svg className="w-7 h-7 text-gray-400 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.669-.072-4.948-.2-4.351-2.609-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                      </a>
-                  </div>
-               </div>
-
-               {/* Info & Location */}
-               <div className="flex flex-col items-center md:items-start gap-12 text-center md:text-left">
-                  <div className="space-y-6">
-                     <span className="text-[10px] font-black text-brand-red uppercase tracking-[0.5em] block">موقعنا</span>
-                     <div className="space-y-2">
-                        <span className="block text-white font-black text-2xl md:text-4xl italic tracking-tight">بغداد، بوب الشام</span>
-                        <span className="block text-gray-500 text-xs md:text-sm font-bold leading-none tracking-widest uppercase opacity-60">سوق بوب الجديد • ٧ أيام في الأسبوع</span>
-                     </div>
-                     <div className="flex items-center justify-center md:justify-start gap-4 text-brand-orange scale-110 md:scale-100 origin-right">
-                        <div className="w-2 h-2 rounded-full bg-brand-orange animate-ping"></div>
-                        <span className="text-[10px] font-black uppercase tracking-[0.3em]">فخر النكهة الشامية</span>
-                     </div>
                   </div>
                </div>
             </div>
