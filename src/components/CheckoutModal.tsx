@@ -38,7 +38,7 @@ const CheckoutModal = memo(({ cart, totalPrice, onClose, onSuccess }: any) => {
 
     if (res.success) {
       // WhatsApp Integration
-      const whatsappNumber = "9647727681903";
+      const whatsappNumber = "9647719933131";
       const itemsList = cart.map((c: any) => {
         const itemName = `${c.product.name}${c.selectedSize ? ` (${c.selectedSize})` : ''}`;
         const itemPrice = c.selectedPrice || c.product.price;
