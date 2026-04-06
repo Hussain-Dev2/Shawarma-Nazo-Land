@@ -541,17 +541,15 @@ const ProductCard = React.memo(({
                 <div className="w-full h-full flex items-center justify-center text-4xl md:text-7xl opacity-10">🍜</div>
              )}
              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-60"></div>
-             <div className={`absolute bottom-4 right-4 md:bottom-6 md:right-6 glass px-3 py-1.5 md:px-5 md:py-2.5 rounded-xl md:rounded-2xl border shadow-2xl transition-all z-20
+             <div className={`absolute bottom-4 right-4 md:bottom-6 md:right-6 px-3 py-1.5 md:px-5 md:py-2.5 rounded-xl md:rounded-2xl border shadow-2xl transition-all z-20 backdrop-blur-md
                 ${isSpecialCategory 
-                  ? 'bg-brand-green text-white border-white/20 scale-110 shadow-[0_0_20px_rgba(0,202,114,0.3)]' 
-                  : 'bg-black/90 border-brand-yellow/30 shadow-[0_0_15px_rgba(255,204,0,0.1)]'}
+                  ? 'bg-brand-green text-white border-white/20 scale-110 shadow-[0_0_20px_rgba(0,202,114,0.4)]' 
+                  : 'bg-black/80 text-white border-brand-yellow/50 shadow-[0_0_15px_rgba(255,204,0,0.1)]'}
              `}>
-                <span className={`text-base md:text-2xl font-black italic tracking-tighter flex items-center gap-1
-                   ${isSpecialCategory ? 'text-black' : 'text-brand-yellow'}
-                `}>
+                <span className="text-base md:text-2xl font-black italic tracking-tighter flex items-center gap-1 text-white">
                    {currentPrice.toLocaleString("ar-IQ")}
-                   <span className={`text-[8px] md:text-[10px] font-bold opacity-80 uppercase not-italic
-                      ${isSpecialCategory ? 'text-black/60' : 'text-brand-yellow/70'}
+                   <span className={`text-[8px] md:text-[10px] font-bold uppercase not-italic
+                      ${isSpecialCategory ? 'text-white/70' : 'text-brand-yellow'}
                    `}>د.ع</span>
                 </span>
              </div>
