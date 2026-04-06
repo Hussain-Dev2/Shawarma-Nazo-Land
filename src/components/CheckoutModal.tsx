@@ -57,7 +57,8 @@ const CheckoutModal = memo(({ cart, totalPrice, onClose, onSuccess }: any) => {
       const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
       
       onSuccess();
-      window.open(whatsappUrl, '_blank');
+      // Use location.href instead of window.open to bypass aggressive mobile popup blockers
+      window.location.href = whatsappUrl;
     } else {
       setError(res.message || "عذراً، حدث خطأ أثناء إرسال الطلب");
     }
