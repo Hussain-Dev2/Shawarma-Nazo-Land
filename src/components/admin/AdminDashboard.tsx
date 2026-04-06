@@ -303,8 +303,6 @@ export default function AdminDashboard({ initialCategories, initialOrders, isOpe
       } else {
         setNewProdImage(publicUrl);
       }
-      
-      setNotification({ show: true, message: "تم رفع الصورة بنجاح! 🎉", type: 'success' });
     } catch (error: any) {
       console.error("Full Upload Error:", error);
       setNotification({ 
