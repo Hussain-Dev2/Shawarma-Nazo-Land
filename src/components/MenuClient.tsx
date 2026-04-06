@@ -110,9 +110,9 @@ export default function MenuClient({ categories, settings }: { categories: Categ
 
   const sortedCategories = useMemo(() => {
     return [...categories].sort((a, b) => {
-      // Special section always first
-      if (a.name === "الجديد والقسم الخاص") return -1;
-      if (b.name === "الجديد والقسم الخاص") return 1;
+      // Special section moved to the bottom
+      if (a.name === "الجديد والقسم الخاص") return 1;
+      if (b.name === "الجديد والقسم الخاص") return -1;
       // Traditional sections follow
       if (a.name === "الوجبات") return -1;
       if (b.name === "الوجبات") return 1;
