@@ -365,7 +365,7 @@ export default function AdminDashboard({ initialCategories, initialOrders, isOpe
               {/* Perfectly Blended Inner Circle */}
               <div className="relative w-[5.8rem] h-[5.8rem] bg-white rounded-full flex items-center justify-center shadow-[inset_0_2px_10px_rgba(0,0,0,0.1)] border-4 border-white/10 overflow-hidden">
                 <img 
-                  src="/land.png" 
+                  src="/final.jpeg" 
                   alt="Logo" 
                   className="w-full h-full object-contain scale-95" 
                 />
@@ -910,7 +910,7 @@ export default function AdminDashboard({ initialCategories, initialOrders, isOpe
                <div className="space-y-10 flex flex-col items-center md:items-end">
                   <div className="flex flex-col items-center md:items-end gap-4">
                      <div className="w-20 h-20 rounded-3xl overflow-hidden border border-white/10 mb-2 shadow-2xl skew-y-3">
-                        <img src="/land.png" alt="Logo" className="w-full h-full object-cover" />
+                        <img src="/final.jpeg" alt="Logo" className="w-full h-full object-cover" />
                      </div>
                      <h3 className="text-4xl font-black text-white italic tracking-tighter leading-none italic animate-gradient-x bg-clip-text text-transparent bg-gradient-to-r from-white via-white/80 to-white">SHAWARMA NAZO LAND</h3>
                      <p className="text-[10px] font-bold text-gray-500 uppercase tracking-[0.3em] max-w-xs leading-relaxed text-center md:text-right">نقدم لكم أفخر النكهات الشامية الأصيلة والوصفات الأسطورية منذ {new Date().getFullYear()}</p>

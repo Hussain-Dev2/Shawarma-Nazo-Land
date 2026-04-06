@@ -12,9 +12,9 @@ export const metadata: Metadata = {
   title: "Shawarma Nazo Land | شاورما نازو لاند",
   description: "أشهى الوجبات السريعة والشاورما في الموصل - حي المزارع",
   icons: {
-    icon: "/land.png",
-    shortcut: "/land.png",
-    apple: "/land.png",
+    icon: "/final.jpeg",
+    shortcut: "/final.jpeg",
+    apple: "/final.jpeg",
   }
 };
 

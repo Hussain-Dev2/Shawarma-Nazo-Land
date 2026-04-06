@@ -220,7 +220,7 @@ export default function MenuClient({ categories, settings }: { categories: Categ
                <div className="absolute -inset-4 bg-gradient-to-r from-brand-green to-brand-yellow rounded-[3rem] blur-2xl opacity-10 group-hover:opacity-30 transition"></div>
                <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-[3rem] overflow-hidden border border-white/10 shadow-3xl bg-black">
                   <Image 
-                    src="/land.png" 
+                    src="/final.jpeg" 
                     alt="Logo" 
                     fill 
                     priority 
@@ -357,7 +357,7 @@ export default function MenuClient({ categories, settings }: { categories: Categ
                <div className="space-y-10 flex flex-col items-center w-full">
                   <div className="flex flex-col items-center gap-4">
                      <div className="w-20 h-20 rounded-3xl overflow-hidden border border-white/10 mb-2 shadow-2xl skew-y-3 relative">
-                        <Image src="/land.png" alt="Logo" fill className="object-cover" />
+                        <Image src="/final.jpeg" alt="Logo" fill className="object-cover" />
                      </div>
                       <h3 className="text-4xl font-black italic tracking-tighter leading-none uppercase flex flex-col items-center gap-1">
                          <span className="text-brand-green">SHAWARMA</span>
@@ -456,7 +456,7 @@ export default function MenuClient({ categories, settings }: { categories: Categ
           <div className="absolute -inset-2 bg-brand-yellow rounded-full blur opacity-20 group-hover:opacity-50 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
           <div className="relative w-14 h-14 md:w-16 md:h-16 rounded-full glass border border-white/20 bg-brand-yellow shadow-2xl overflow-hidden active:scale-90 transition-all">
             <Image 
-              src="/land.png" 
+              src="/final.jpeg" 
               alt="Bot Service" 
               fill 
               className="object-cover hover:scale-125 transition-transform" 
